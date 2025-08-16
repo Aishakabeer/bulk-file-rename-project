@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bulk File Renamer</title>
+    <link rel="stylesheet" href="{% static 'renamer/black-theme.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bulk File Renamer</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="folder" class="label">Choose Folder:</label>
+            <input type="file" id="folder" name="folder" webkitdirectory directory multiple class="input" />
+            {{ form.as_p }}
+            <button type="submit" class="button">Rename Files</button>
+        </form>
+        <h2>Results:</h2>
+        <ul>
+            {% for item in result %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
